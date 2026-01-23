@@ -1,7 +1,7 @@
 @extends('main_master')
 
 @section('title')
-    ScanPhoto | Vos souvenirs en un instant
+    ScanPhoto | Connexion
 @endsection
 
 @section('content')

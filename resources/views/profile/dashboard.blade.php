@@ -92,9 +92,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($events as $event)
+                                    @foreach ($events as $key => $event)
                                         <tr>
-                                            <td>{{ $event->id }}</td>
+                                            <td>{{ $key + 1 }}</td>
                                             <td>{{ $event->title }}</td>
                                             <td>{{ \Carbon\Carbon::parse($event->date)->format('d/m/Y') }}</td>
                                             <td>{{ $event->photos_count ?? 0 }}</td>
@@ -108,8 +108,8 @@
                                                 @endif
                                             </td>
                                             <td class="text-end">
-                                                <a href="#" title="Partager l'événement"
-                                                    class="btn btn-sm btn-outline-primary">
+                                                <a target="_blank" href="{{ route('view.event', $event->code) }}"
+                                                    title="Partager l'événement" class="btn btn-sm btn-outline-primary">
                                                     <i class="bi bi-share"></i>
                                                 </a>
                                                 <a href="#" class="btn btn-sm btn-outline-danger"

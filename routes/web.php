@@ -8,6 +8,11 @@ use App\Http\Controllers\StripeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/event/{code}', [HomeController::class, 'viewEvent'])->name('view.event');
+Route::get('/event/{code}/images', [HomeController::class, 'viewEventImages'])->name('view.event.images');
+Route::get('/results', [HomeController::class, 'viewResults'])->name('view.results');
+
+Route::get('/photos/download/all', [HomeController::class, 'downloadAll'])->name('photos.downloadAll');
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');

@@ -36,9 +36,9 @@
 
                         <select name="event" id="event" class="form-select" required>
                             <option value="">Sélectionnez un événement</option>
-                            <option value="1">Événement 1</option>
-                            <option value="2">Événement 2</option>
-                            <option value="3">Événement 3</option>
+                            @foreach ($events as $event)
+                                <option value="{{ $event->id }}">{{ $event->title }}</option>
+                            @endforeach
                         </select>
                     </div>
 

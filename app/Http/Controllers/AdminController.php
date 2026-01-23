@@ -7,56 +7,80 @@ use App\Models\PhotoList;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Aws\Rekognition\RekognitionClient;
 
 class AdminController extends Controller
 {
     public function dashboard()
     {
-        $events = Event::where('user_id', Auth::id())->get();
+        $events = Event::where('user_id', Auth::id())->latest()->get();
 
         return view('profile.dashboard', compact('events'));
     }
     //
     public function viewAddPictures()
     {
-        return view('admins.pictures.add_pictures');
+        $events = Event::where('user_id', Auth::id())->latest()->get();
+        return view('admins.pictures.add_pictures', compact('events'));
     }
     public function uploadImages(Request $request)
     {
         $request->validate([
             'photos.*' => 'required|image|max:10240', // max 10MB
         ]);
+        $event = Event::find($request->event);
+        $rekognition = new RekognitionClient([
+            'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
+            'version' => 'latest',
+            'credentials' => [
+                'key' => env('AWS_ACCESS_KEY_ID'),
+                'secret' => env('AWS_SECRET_ACCESS_KEY'),
+            ],
+        ]);
 
-        $uploaded = [];
+        // ID collection (1 par événement)
+        $collectionId = 'event_' . $event->id;
 
-        foreach ($request->file('photos') as $file) {
-            $filename = $file->getClientOriginalName();
-
-            // Vérifier si la photo existe déjà dans la DB
-            $existing = PhotoList::where('filename', $filename)->first();
-            if ($existing) {
-                continue; // Ignorer les doublons
-            }
-
-            // Créer le dossier s'il n'existe pas
-            // $path = 'upload/event' . $request->event;
-            // $destinationPath = public_path($path);
-            // if (!file_exists($destinationPath)) {
-            //     mkdir($destinationPath, 0755, true);
-            // }
-            // $file->move($destinationPath, $filename);
-
-            // Upload sur S3
-            $path = $file->store('photos', $filename, 's3');
-
-            // Enregistrer dans la DB
-            PhotoList::create([
-                'filename' => $filename,
-                'path' => $path,
-                'event_id' => $request->event // Associer l'événement
+        // (Optionnel mais recommandé) créer la collection si elle n'existe pas
+        try {
+            $rekognition->createCollection([
+                'CollectionId' => $collectionId,
             ]);
+        } catch (\Exception $e) {
+            // Ignore si elle existe déjà
         }
 
+        foreach ($request->file('photos') as $file) {
+            $original = $file->getClientOriginalName();
+
+            // Vérifier si la photo existe déjà dans la DB
+            $existing = PhotoList::where('filename', $original)->first();
+            if (!$existing) {
+                $extension = $file->getClientOriginalExtension();
+                $filename = time() . '_' . rand(1000, 9999) . '.' . $extension;
+                // Upload sur S3
+                $path = $file->storeAs($event->slug, $filename, 's3');
+
+                // Enregistrer dans la DB
+                $photo = PhotoList::create([
+                    'filename' => $original,
+                    'path' => $path,
+                    'event_id' => $request->event // Associer l'événement
+                ]);
+                // Indexer les visages
+                $rekognition->indexFaces([
+                    'CollectionId' => $collectionId,
+                    'Image' => [
+                        'S3Object' => [
+                            'Bucket' => env('AWS_BUCKET'),
+                            'Name' => $path,
+                        ],
+                    ],
+                    'ExternalImageId' => (string) $photo->id, // lien DB
+                    'DetectionAttributes' => [],
+                ]);
+            }
+        }
         return redirect()->route('dashboard')->with('success', ' photos uploaded successfully.');
     }
     public function viewCreateEvent()
@@ -73,7 +97,7 @@ class AdminController extends Controller
 
         do {
             $code = Auth::id() . Str::lower(Str::random(6));
-            $url = config('app.url') . '/event/' . $code;
+            $url = config('app.url') . '/event/' . $code . '/images';
         } while (Event::where('url', $url)->exists());
         $event = new Event([
             'user_id'     => Auth::id(),
