@@ -10,9 +10,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/event/{code}', [HomeController::class, 'viewEvent'])->name('view.event');
 Route::get('/event/{code}/images', [HomeController::class, 'viewEventImages'])->name('view.event.images');
-Route::get('/results', [HomeController::class, 'viewResults'])->name('view.results');
 
-Route::get('/photos/download/all', [HomeController::class, 'downloadAll'])->name('photos.downloadAll');
+Route::prefix('user')->group(function () {
+    Route::get('/results', [HomeController::class, 'viewResults'])->name('view.results');
+    Route::get('/photos/download/all', [HomeController::class, 'downloadAll'])->name('photos.downloadAll');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
@@ -30,14 +32,21 @@ Route::middleware('auth')->group(function () {
         Route::patch('/update', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/destroy', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
+
+
+    Route::get('/choose/plan', [HomeController::class, 'choosePlan'])->name('choose.plan');
+
     Route::prefix('stripe')->group(function () {
-        Route::get('/checkout', [StripeController::class, 'checkout'])->name('stripe.checkout');
+        Route::get('/checkout', [StripeController::class, 'normalcheckout'])->name('normal.checkout');
+        Route::get('/checkout/subscription', [StripeController::class, 'checkoutSubscription'])->name('subscription.checkout');
+
+        Route::post('/checkout/confirm', [StripeController::class, 'confirm'])->name('checkout.confirm');
     });
 });
 
 require __DIR__ . '/auth.php';
 
-Route::get('/take/picture', [HomeController::class, 'takePicture'])->name('take.picture');
+Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::post('/scan/image', [ScanController::class, 'scanImage'])->name('scan.image');
 
 Route::get('/test-rekognition', [ScanController::class, 'testRekognition'])->name('test.rekognition');

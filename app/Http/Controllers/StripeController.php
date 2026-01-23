@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 class StripeController extends Controller
 {
     //
-    public function checkout()
+    public function normalcheckout()
     {
-        return view('payment.stripe');
+        return view('payment.checkout.normal');
     }
 }

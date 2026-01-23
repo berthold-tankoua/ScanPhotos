@@ -19,9 +19,9 @@
                         <!-- Récap prix -->
                         <div class="bg-light rounded-3 p-3 mb-2 text-center">
                             <div class="text-muted">Montant à payer</div>
-                            <div class="fs-2 fw-bold">$5.00</div>
+                            <div class="fs-2 fw-bold">$5.00/mois</div>
                             <small class="text-muted">
-                                Activation de l’événement
+                                Création événement illimitée + Accès aux fonctionnalités premium
                             </small>
                         </div>
 

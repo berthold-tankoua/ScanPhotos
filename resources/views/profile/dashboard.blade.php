@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="container-fluid px-4 py-4 bg-light">
-
+        @include('components.alert')
         <div class="row g-4">
 
             <!-- SIDEBAR -->
@@ -34,7 +34,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="col-12 col-md-4">
                         <div class="card shadow-sm border-0 rounded-4">
                             <div class="card-body d-flex align-items-center">
@@ -112,7 +111,7 @@
                                                     title="Partager l'événement" class="btn btn-sm btn-outline-primary">
                                                     <i class="bi bi-share"></i>
                                                 </a>
-                                                <a href="#" class="btn btn-sm btn-outline-danger"
+                                                <a href="{{ route('choose.plan') }}" class="btn btn-sm btn-outline-danger"
                                                     title="Effectuer le paiement pour activer l'événement">
                                                     <i class="bi bi-credit-card"></i>
                                                 </a>
@@ -129,4 +128,10 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var alertModal = new bootstrap.Modal(document.getElementById('alertModal'));
+            alertModal.show();
+        });
+    </script>
 @endsection

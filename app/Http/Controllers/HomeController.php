@@ -6,6 +6,8 @@ use App\Models\Event;
 use App\Models\PhotoList;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
+use ZipArchive;
 
 class HomeController extends Controller
 {
@@ -14,10 +16,16 @@ class HomeController extends Controller
     {
         return view('frontend.welcome');
     }
-    public function takePicture()
+    public function about()
     {
-        return view('frontend.camera');
+        return view('frontend.about');
     }
+
+    public function choosePlan()
+    {
+        return view('profile.choose_plan');
+    }
+
     public function viewEvent($code)
     {
         $event = Event::where('code', $code)->firstOrFail();
@@ -44,5 +52,44 @@ class HomeController extends Controller
         }
         $photos = PhotoList::whereIn('id', $photoIds)->get();
         return view('frontend.results.image', compact('photos'));
+    }
+
+    public function downloadAll()
+    {
+        if (Session::has('photoIds')) {
+            $photoIds = Session::get('photoIds');
+        }
+        $photos = PhotoList::whereIn('id', $photoIds)->get();
+
+        if ($photos->isEmpty()) {
+            $notification = [
+                'message' => 'Aucune photo à télécharger',
+                'alert-type' => 'error'
+            ];
+            return back()->with($notification);
+        }
+
+        $zipName = 'photos_' . now()->timestamp . '.zip';
+        $zipPath = storage_path('app/' . $zipName);
+
+        $zip = new ZipArchive();
+
+        if ($zip->open($zipPath, ZipArchive::CREATE | ZipArchive::OVERWRITE) !== true) {
+            abort(500, 'Impossible de créer le ZIP');
+        }
+
+        foreach ($photos as $photo) {
+            // Récupérer le fichier depuis S3
+            $fileContent = Storage::disk('s3')->get($photo->path);
+
+            // Nom du fichier dans le ZIP
+            $filename = basename($photo->path);
+
+            $zip->addFromString($filename, $fileContent);
+        }
+
+        $zip->close();
+
+        return response()->download($zipPath)->deleteFileAfterSend(true);
     }
 }

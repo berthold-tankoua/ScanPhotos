@@ -128,7 +128,9 @@
                                     loading="lazy" alt="Photo détectée">
 
                                 <div class="photo-overlay">
-                                    <a href="{{ Storage::disk('s3')->temporaryUrl($photo->path, now()->addMinutes(30)) }}"
+                                    <a href="{{ Storage::disk('s3')->temporaryUrl($photo->path, now()->addMinutes(30), [
+                                        'ResponseContentDisposition' => 'attachment; filename ="photo-' . $photo->id . '.jpg"',
+                                    ]) }}"
                                         class="download-btn shadow-sm" download>
                                         <i class="bi bi-download me-2"></i>Enregistrer
                                     </a>

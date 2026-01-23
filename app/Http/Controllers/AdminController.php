@@ -117,6 +117,6 @@ class AdminController extends Controller
         $event->save();
         return Auth::user()->subscription_id
             ? redirect()->route('dashboard')->with('success', 'Event created successfully.')
-            : redirect()->route('stripe.checkout')->with('error', 'Effectuer le paiement.');
+            : redirect()->route('choose.plan')->with('error', 'Effectuer le paiement.');
     }
 }

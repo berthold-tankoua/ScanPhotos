@@ -6,19 +6,33 @@
 
 @section('content')
     <!-- HERO -->
-    <section class="hero text-center">
-        <div class="container">
-            <span class="badge badge-soft mb-3">Nouveau : IA de reconnaissance faciale</span>
-            <h1 class="display-5 fw-bold text-gradient mb-4">
-                Scannez votre visage,<br>
-                retrouvez instantanément vos photos.
+    <section class="hero py-5 text-center position-relative overflow-hidden">
+        <div class="container position-relative z-1">
+
+            <span class="badge bg-primary bg-opacity-10 text-primary mb-3 px-3 py-2 rounded-pill">
+                Reconnaissance faciale intelligente
+            </span>
+
+            <h1 class="display-6 fw-bold mb-4 h3">
+                Partagez les photos de vos événements<br>
+                <span class="text-primary">avec vos proches</span>
             </h1>
 
-            <p class="lead text-muted mx-auto mb-5" style="max-width: 650px;">
-                La solution intelligente pour récupérer instantanément vos photos de mariage,
-                gala ou anniversaire au milieu de milliers d’images.
+            <p class="lead text-muted mx-auto mb-5" style="max-width:920px;">
+                Vous organisez un événement (mariage, anniversaire, gala) ou êtes photographe ?
+                ScanPhoto permet à vos invités et clients d’accéder
+                automatiquement à leurs photos grâce à un simple selfie.
             </p>
-            <a href="{{ route('take.picture') }}" class="btn btn-brand btn-lg">Démarrer l’expérience</a>
+
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <a href="{{ route('register') }}" class="btn btn-brand btn-lg px-5">
+                    Tester l’expérience
+                </a>
+                <a href="{{ route('about') }}" class="btn btn-outline-secondary btn-lg px-4">
+                    Comment ça marche
+                </a>
+            </div>
+
         </div>
     </section>
 
@@ -26,37 +40,42 @@
     <section class="py-5">
         <div class="container">
             <div class="text-center mb-5">
-                <h2 class="fw-bold">Pour tous vos moments</h2>
-                <p class="text-muted">Une technologie de pointe au service de l’émotion.</p>
+                <h2 class="fw-bold">Pensé pour vos événements</h2>
+                <p class="text-muted">
+                    Une solution simple, rapide et moderne pour partager les souvenirs.
+                </p>
             </div>
 
             <div class="row g-4">
                 <div class="col-md-4">
-                    <div class="card card-custom h-100 p-4">
+                    <div class="card card-custom h-100 p-4 text-center">
                         <div class="fs-1 mb-3">💍</div>
-                        <h4>Mariages</h4>
+                        <h4>Organisateurs</h4>
                         <p class="text-muted">
-                            Offrez à vos invités le plaisir de découvrir leurs clichés sans attendre des semaines.
+                            Offrez à vos invités un accès immédiat à leurs photos
+                            sans échanges interminables ni groupes WhatsApp.
                         </p>
                     </div>
                 </div>
 
                 <div class="col-md-4">
-                    <div class="card card-custom h-100 p-4">
-                        <div class="fs-1 mb-3">🎉</div>
-                        <h4>Événements</h4>
-                        <p class="text-muted">
-                            Soirées d’entreprise ou festivals : chacun repart avec ses souvenirs.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="card card-custom h-100 p-4">
+                    <div class="card card-custom h-100 p-4 text-center">
                         <div class="fs-1 mb-3">📸</div>
                         <h4>Photographes</h4>
                         <p class="text-muted">
-                            Automatisez la distribution et offrez une expérience client premium.
+                            Automatisez la distribution des photos et valorisez
+                            votre travail avec une expérience haut de gamme.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card card-custom h-100 p-4 text-center">
+                        <div class="fs-1 mb-3">🎉</div>
+                        <h4>Invités</h4>
+                        <p class="text-muted">
+                            Un simple selfie suffit pour retrouver toutes
+                            les photos où vous apparaissez.
                         </p>
                     </div>
                 </div>
@@ -64,46 +83,56 @@
         </div>
     </section>
 
+
     <!-- PROCESS -->
-    <section class="py-5 bg-light">
+    <section id="how" class="py-5 bg-light">
         <div class="container">
             <div class="text-center mb-5">
-                <h2 class="fw-bold">Le processus ScanPhoto</h2>
+                <h2 class="fw-bold">Comment fonctionne ScanPhoto</h2>
+                <p class="text-muted">Une technologie simple, pensée pour l’humain.</p>
             </div>
-            <div class="row cursor-pointer">
+
+            <div class="row g-4">
                 <div class="col-md-3">
-                    <div class="card h-100 text-center border-0 shadow-sm process-card p-4">
+                    <div class="card process-card h-100 p-4 text-center border-0 shadow-sm">
                         <div class="step-number">01</div>
-                        <h5>Upload rapide</h5>
-                        <p class="text-muted">Le photographe charge les photos sur Google Drive sécurisé.</p>
+                        <h5>Import des photos</h5>
+                        <p class="text-muted">
+                            Le photographe importe les photos de l’événement.
+                        </p>
                     </div>
                 </div>
 
                 <div class="col-md-3">
-                    <div class="card h-100 text-center border-0 shadow-sm process-card p-4">
+                    <div class="card process-card h-100 p-4 text-center border-0 shadow-sm">
                         <div class="step-number">02</div>
-                        <h5>Analyse IA</h5>
-                        <p class="text-muted">L’algorithme identifie les visages automatiquement.</p>
+                        <h5>Analyse intelligente</h5>
+                        <p class="text-muted">
+                            L’IA analyse et indexe les visages en toute sécurité.
+                        </p>
                     </div>
                 </div>
 
                 <div class="col-md-3">
-                    <div class="card h-100 text-center border-0 shadow-sm process-card p-4">
+                    <div class="card process-card h-100 p-4 text-center border-0 shadow-sm">
                         <div class="step-number">03</div>
                         <h5>Scan selfie</h5>
-                        <p class="text-muted">L’invité prend un selfie pour s’identifier.</p>
+                        <p class="text-muted">
+                            L’invité effectue un selfie depuis son téléphone.
+                        </p>
                     </div>
                 </div>
 
                 <div class="col-md-3">
-                    <div class="card h-100 text-center border-0 shadow-sm process-card p-4">
+                    <div class="card process-card h-100 p-4 text-center border-0 shadow-sm">
                         <div class="step-number">04</div>
-                        <h5>Résultat instantané</h5>
-                        <p class="text-muted">Toutes ses photos s’affichent immédiatement.</p>
+                        <h5>Accès instantané</h5>
+                        <p class="text-muted">
+                            Toutes les photos correspondantes s’affichent immédiatement.
+                        </p>
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
 

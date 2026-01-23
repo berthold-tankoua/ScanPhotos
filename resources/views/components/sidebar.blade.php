@@ -19,7 +19,8 @@
                     <a href="#" class="list-group-item list-group-item-action align-items-center d-flex">
                         <i class="bi bi-question-circle fs-4 me-2"></i> Support
                     </a>
-                    <a href="#" class="list-group-item list-group-item-action align-items-center d-flex">
+                    <a href="{{ route('logout') }}"
+                        class="list-group-item list-group-item-action align-items-center d-flex">
                         <i class="bi bi-box-arrow-right fs-4 me-2"></i> Déconnexion
                     </a>
                 </div>

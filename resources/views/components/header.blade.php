@@ -6,7 +6,7 @@
                     Dashboard
                 </a>
             @else
-                <a href="{{ route('take.picture') }}" class="btn btn-brand btn-sm">Démarrer</a>
+                <a href="{{ route('login') }}" class="btn btn-brand btn-sm">Connexion</a>
             @endauth
 
         </div>
