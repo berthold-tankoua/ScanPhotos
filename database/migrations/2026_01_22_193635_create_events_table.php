@@ -14,7 +14,11 @@ return new class extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('name')->unique(); // Nom de l'événement unique
+            $table->string('title')->unique(); // Nom de l'événement unique
+            $table->text('description')->nullable();
+            $table->double('price_paid', 8, 2)->nullable();
+            $table->string('payment_status')->nullable();
+
             $table->timestamps();
 
             // SUPPRESSION EN CASCADE
