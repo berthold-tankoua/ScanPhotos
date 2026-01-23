@@ -7,15 +7,6 @@
 @section('content')
     <div class="container-fluid px-4 py-4 bg-light">
 
-        <!-- BREADCRUMB -->
-        <nav aria-label="breadcrumb" class="mb-4">
-            <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="#">Accueil</a></li>
-                <li class="breadcrumb-item"><a href="#">Événements</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Upload Photos</li>
-            </ol>
-        </nav>
-
         <div class="row g-4">
 
             <!-- SIDEBAR -->
@@ -38,7 +29,7 @@
                                 </div>
                                 <div>
                                     <h6 class="text-muted mb-1">Total événements</h6>
-                                    <h3 class="fw-bold mb-0">24</h3>
+                                    <h3 class="fw-bold mb-0">{{ $events->count() }}</h3>
                                 </div>
                             </div>
                         </div>
@@ -66,7 +57,11 @@
                                 </div>
                                 <div>
                                     <h6 class="text-muted mb-1">Abonnement</h6>
-                                    <h5 class="fw-bold mb-0 text-warning">Premium</h5>
+                                    @if (Auth::user()->subscription_id)
+                                        <h5 class="fw-bold mb-0 text-success">Premium</h5>
+                                    @else
+                                        <h5 class="fw-bold mb-0 text-danger">Gratuit</h5>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -79,7 +74,7 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <h5 class="fw-bold mb-0">📅 Liste des événements</h5>
-                            <a href="#" class="btn btn-primary btn-sm">
+                            <a href="{{ route('create.event') }}" class="btn btn-primary btn-sm">
                                 <i class="bi bi-plus-circle"></i> Ajouter
                             </a>
                         </div>
@@ -97,41 +92,33 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Mariage Paul & Sarah</td>
-                                        <td>12/01/2026</td>
-                                        <td>850</td>
-                                        <td>
-                                            <span class="badge bg-success">Actif</span>
-                                        </td>
-                                        <td class="text-end">
-                                            <a href="#" class="btn btn-sm btn-outline-primary">
-                                                <i class="bi bi-eye"></i>
-                                            </a>
-                                            <a href="#" class="btn btn-sm btn-outline-danger">
-                                                <i class="bi bi-trash"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Anniversaire Emma</td>
-                                        <td>03/02/2026</td>
-                                        <td>320</td>
-                                        <td>
-                                            <span class="badge bg-secondary">Archivé</span>
-                                        </td>
-                                        <td class="text-end">
-                                            <a href="#" class="btn btn-sm btn-outline-primary">
-                                                <i class="bi bi-eye"></i>
-                                            </a>
-                                            <a href="#" class="btn btn-sm btn-outline-danger">
-                                                <i class="bi bi-trash"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    @foreach ($events as $event)
+                                        <tr>
+                                            <td>{{ $event->id }}</td>
+                                            <td>{{ $event->title }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($event->date)->format('d/m/Y') }}</td>
+                                            <td>{{ $event->photos_count ?? 0 }}</td>
+                                            <td>
+                                                @if ($event->status == 'active')
+                                                    <span class="badge bg-success">ACTIF</span>
+                                                @else
+                                                    <span class="badge bg-danger">INACTIF </span><i
+                                                        class="bi bi-info-circle ms-1 cursor-pointer"
+                                                        title="Cet événement est inactif, veuillez effectuer le paiement pour l'activer."></i>
+                                                @endif
+                                            </td>
+                                            <td class="text-end">
+                                                <a href="#" title="Partager l'événement"
+                                                    class="btn btn-sm btn-outline-primary">
+                                                    <i class="bi bi-share"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-sm btn-outline-danger"
+                                                    title="Effectuer le paiement pour activer l'événement">
+                                                    <i class="bi bi-credit-card"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

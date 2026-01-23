@@ -10,23 +10,23 @@
         <!-- BREADCRUMB -->
         <nav aria-label="breadcrumb" class="mb-4">
             <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="#">Accueil</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                 <li class="breadcrumb-item"><a href="#">Événements</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Upload Photos</li>
             </ol>
         </nav>
 
-        <div class="row g-4">
+        <div class="row justify-content-center g-4">
 
             <!-- SIDEBAR -->
-            <div class="col-12 col-md-4 col-lg-4">
-                @include('components.sidebar')
-            </div>
+            {{-- <div class="col-12 col-md-4 col-lg-4">
+               @include('components.sidebar')
+            </div> --}}
 
             <!-- MAIN CONTENT -->
             <div class="col-12 col-md-8 col-lg-8">
 
-                <form id="uploadForm" action="{{ route('admin.event.images') }}" method="POST"
+                <form id="uploadForm" action="{{ route('upload.event.images') }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
 

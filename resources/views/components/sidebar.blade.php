@@ -5,11 +5,13 @@
                     <a href="#" class="list-group-item list-group-item-action align-items-center d-flex">
                         <i class="bi bi-credit-card fs-4 me-2"></i> Abonnement
                     </a>
-                    <a href="#" class="list-group-item list-group-item-action align-items-center d-flex">
+                    <a href="{{ route('create.event') }}"
+                        class="list-group-item list-group-item-action align-items-center d-flex">
                         <i class="bi bi-calendar-event fs-4 me-2"></i> Mes événements
                     </a>
-                    <a href="#" class="list-group-item list-group-item-action align-items-center d-flex">
-                        <i class="bi bi-images fs-4 me-2"></i> Mes photos
+                    <a href="{{ route('add.pictures') }}"
+                        class="list-group-item list-group-item-action align-items-center d-flex">
+                        <i class="bi bi-images fs-4 me-2"></i> Publier des photos
                     </a>
                     <a href="#" class="list-group-item list-group-item-action align-items-center d-flex">
                         <i class="bi bi-person-circle fs-4 me-2"></i> Paramètres du compte
