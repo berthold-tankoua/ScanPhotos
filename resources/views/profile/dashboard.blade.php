@@ -82,10 +82,10 @@
                             <table class="table table-hover align-middle">
                                 <thead class="table-light">
                                     <tr>
-                                        <th>#</th>
-                                        <th>Nom</th>
                                         <th>Date</th>
-                                        <th>Photos</th>
+                                        <th>Nom</th>
+                                        <th>Lien (A partager)</th>
+
                                         <th>Statut</th>
                                         <th class="text-end">Actions</th>
                                     </tr>
@@ -93,10 +93,13 @@
                                 <tbody>
                                     @foreach ($events as $key => $event)
                                         <tr>
-                                            <td>{{ $key + 1 }}</td>
-                                            <td>{{ $event->title }}</td>
                                             <td>{{ \Carbon\Carbon::parse($event->date)->format('d/m/Y') }}</td>
-                                            <td>{{ $event->photos_count ?? 0 }}</td>
+                                            <td>{{ $event->title }}</td>
+                                            <td><a target="_blank" href="{{ route('view.event', $event->code) }}">ouvrir le
+                                                    lien <i class="bi bi-info-circle-fill"
+                                                        title="Partager ce lien avec les invités afin qu’ils puissent scanner leur visage et accéder facilement à leurs photos."></i></a>
+                                            </td>
+
                                             <td>
                                                 @if ($event->status == 'active')
                                                     <span class="badge bg-success">ACTIF</span>
@@ -111,10 +114,13 @@
                                                     title="Partager l'événement" class="btn btn-sm btn-outline-primary">
                                                     <i class="bi bi-share"></i>
                                                 </a>
-                                                <a href="{{ route('choose.plan') }}" class="btn btn-sm btn-outline-danger"
-                                                    title="Effectuer le paiement pour activer l'événement">
-                                                    <i class="bi bi-credit-card"></i>
-                                                </a>
+                                                @if ($event->status != 'active')
+                                                    <a href="{{ route('retry.checkout', $event->id) }}"
+                                                        class="btn btn-sm btn-outline-danger"
+                                                        title="Effectuer le paiement pour activer l'événement">
+                                                        <i class="bi bi-credit-card"></i>
+                                                    </a>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach

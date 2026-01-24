@@ -26,7 +26,7 @@
                         </div>
 
                         <!-- Formulaire -->
-                        <form method="POST" action="{{ route('checkout.confirm') }}">
+                        <form method="POST" action="{{ route('subscription.checkout.confirm') }}">
                             @csrf
                             <input type="hidden" name="price" value="5">
                             <div class="mb-3">

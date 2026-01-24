@@ -39,10 +39,15 @@ Route::middleware('auth')->group(function () {
     Route::prefix('stripe')->group(function () {
         Route::get('/checkout', [StripeController::class, 'normalcheckout'])->name('normal.checkout');
         Route::get('/checkout/subscription', [StripeController::class, 'checkoutSubscription'])->name('subscription.checkout');
-
-        Route::post('/checkout/confirm', [StripeController::class, 'confirm'])->name('checkout.confirm');
+        Route::get('/checkout/retry/{event_id}', [StripeController::class, 'checkoutRetry'])->name('retry.checkout');
+        Route::post('/checkout/subscription/confirm', [StripeController::class, 'StripeSubscriptionPage'])->name('subscription.checkout.confirm');
+        Route::post('/checkout/confirm', [StripeController::class, 'StripeCheckoutPage'])->name('payment.checkout.confirm');
     });
 });
+
+/// Paiement Status All Routes ////
+Route::get('/stripe/payment/status', [StripeController::class, 'StripePaymentStatus'])->name('stripe.status');
+Route::get('/stripe/payment/cancel', [StripeController::class, 'StripeCancel'])->name('stripe.cancel');
 
 require __DIR__ . '/auth.php';
 

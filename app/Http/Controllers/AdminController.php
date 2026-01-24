@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Aws\Rekognition\RekognitionClient;
+use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
 {
@@ -115,6 +116,9 @@ class AdminController extends Controller
         }
 
         $event->save();
+
+        Session::forget('eventId');
+        Session::put('eventId', $event->id);
         return Auth::user()->subscription_id
             ? redirect()->route('dashboard')->with('success', 'Event created successfully.')
             : redirect()->route('choose.plan')->with('error', 'Effectuer le paiement.');
