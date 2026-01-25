@@ -39,8 +39,11 @@ class HomeController extends Controller
     {
         $event = Event::where('code', $code)->firstOrFail();
         $images = PhotoList::where('event_id', $event->id)->get();
-        if ($event->status !== 'active') {
-            return view('frontend.event.images', compact('event', 'images'));
+        $photoIds = PhotoList::where('event_id', $event->id)->pluck('id')->toArray();
+        Session::forget('photoIds');
+        Session::put('photoIds', $photoIds);
+        if ($event->status != 'active') {
+            abort
         } else {
             return view('frontend.event.images', compact('event', 'images'));
         }
@@ -54,7 +57,7 @@ class HomeController extends Controller
         return view('frontend.results.image', compact('photos'));
     }
 
-    public function downloadAll()
+    public function EventAllPicsDownload()
     {
         if (Session::has('photoIds')) {
             $photoIds = Session::get('photoIds');
