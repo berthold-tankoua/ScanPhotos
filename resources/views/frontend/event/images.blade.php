@@ -102,21 +102,44 @@
         }
     </style>
 
-    <div class="gallery-container py-5">
+    <div class="gallery-container py-4">
         <div class="container">
+            <div class="card border-0 shadow-sm rounded-4 mb-4 overflow-hidden">
+                <div class="card-body p-3">
+                    <div class="row align-items-center">
 
-            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-5 gap-3">
-                <div>
-                    <h2 class="gallery-title mb-1">Vos photos détectées</h2>
-                    <p class="text-muted mb-0">Nous avons trouvé {{ $photos->count() }} moments magiques pour vous.</p>
+                        <div class="col-sm-6 border-end">
+                            <div class="ps-2">
+                                <h4 class="fw-bold mb-1 text-dark">Photos de l'événement</h4>
+                                <div class="d-flex align-items-center gap-3">
+                                    <span class="badge bg-light text-primary border">
+                                        <i class="bi bi-images me-1"></i> {{ $photos->count() }}
+                                    </span>
+                                    @if ($photos && $photos->count() > 0)
+                                        <a href="{{ route('photos.downloadAll') }}"
+                                            class="btn btn-primary btn-sm rounded-pill px-3 fw-bold shadow-sm">
+                                            <i class="bi bi-cloud-arrow-down-fill me-1"></i> Tout télécharger
+                                        </a>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-center justify-content-end pe-2">
+                                <div class="text-end me-3">
+                                    <p class="mb-0 fw-bold small">Scanner pour trouver vos photos</p>
+                                    <p class="mb-0 text-muted" style="font-size: 0.7rem;">Retrouvez toutes les photos ou
+                                        vous apparaisez</p>
+                                </div>
+                                <div class="bg-white p-1 rounded-2 shadow-sm border">
+                                    {!! QrCode::size(60)->margin(1)->generate($url) !!}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-
-                @if ($photos && $photos->count() > 0)
-                    <a href="{{ route('photos.downloadAll') }}"
-                        class="btn btn-primary rounded-pill px-4 py-2 fw-bold shadow-sm">
-                        <i class="bi bi-cloud-arrow-down-fill me-2"></i>Tout télécharger
-                    </a>
-                @endif
             </div>
 
             @if ($photos && $photos->count() > 0)

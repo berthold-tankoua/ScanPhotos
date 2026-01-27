@@ -16,10 +16,17 @@ class HomeController extends Controller
     {
         return view('frontend.welcome');
     }
+
     public function about()
     {
         return view('frontend.about');
     }
+
+    public function contact()
+    {
+        return view('frontend.contact');
+    }
+    public function sendMessage(Request $request) {}
 
     public function choosePlan()
     {
@@ -38,14 +45,16 @@ class HomeController extends Controller
     public function viewEventImages($code)
     {
         $event = Event::where('code', $code)->firstOrFail();
-        $images = PhotoList::where('event_id', $event->id)->get();
+        $photos = PhotoList::where('event_id', $event->id)->get();
         $photoIds = PhotoList::where('event_id', $event->id)->pluck('id')->toArray();
-        Session::forget('photoIds');
-        Session::put('photoIds', $photoIds);
+        $url = config('app.url') . '/event/' . $code;
+
+        // Session::forget('photoIds');
+        // Session::put('photoIds', $photoIds);
+
         if ($event->status != 'active') {
-            abort
         } else {
-            return view('frontend.event.images', compact('event', 'images'));
+            return view('frontend.event.images', compact('event', 'photos', 'url'));
         }
     }
     public function viewResults()

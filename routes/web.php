@@ -8,6 +8,12 @@ use App\Http\Controllers\StripeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/about', [HomeController::class, 'about']);
+Route::get('/contact', [HomeController::class, 'contact']);
+Route::post('/send/message', [HomeController::class, 'sendMessage'])->name('send.msg');
+
+
+
 Route::get('/event/{code}', [HomeController::class, 'viewEvent'])->name('view.event');
 Route::get('/event/{code}/images', [HomeController::class, 'viewEventImages'])->name('view.event.images');
 
@@ -32,6 +38,9 @@ Route::middleware('auth')->group(function () {
         Route::patch('/update', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/destroy', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
+    //  subscription-status-verif AJAX
+    Route::post('/subscription-status-verif', [AdminController::class, 'SubcriptionMonthlyCheck']);
+
 
 
     Route::get('/choose/plan', [HomeController::class, 'choosePlan'])->name('choose.plan');

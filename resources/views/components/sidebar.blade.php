@@ -16,7 +16,8 @@
                     <a href="#" class="list-group-item list-group-item-action align-items-center d-flex">
                         <i class="bi bi-person-circle fs-4 me-2"></i> Paramètres du compte
                     </a>
-                    <a href="#" class="list-group-item list-group-item-action align-items-center d-flex">
+                    <a href="{{ url('/contact') }}"
+                        class="list-group-item list-group-item-action align-items-center d-flex">
                         <i class="bi bi-question-circle fs-4 me-2"></i> Support
                     </a>
                     <a href="{{ route('logout') }}"

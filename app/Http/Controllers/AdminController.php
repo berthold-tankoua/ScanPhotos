@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\PhotoList;
+use App\Models\Subscription;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Aws\Rekognition\RekognitionClient;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
@@ -122,5 +125,32 @@ class AdminController extends Controller
         return Auth::user()->subscription_id
             ? redirect()->route('dashboard')->with('success', 'Event created successfully.')
             : redirect()->route('choose.plan')->with('error', 'Effectuer le paiement.');
+    }
+
+    public function SubcriptionMonthlyCheck()
+    {
+
+        if (Auth::check()) {
+            $userIds = User::whereNotNull('subscription')->pluck('id');
+
+            Event::whereIn('user_id', $userIds)
+                ->update([
+                    'payment_status' => 'Paid',
+                    'status' => 'active',
+                    'price_paid' => 5,
+                ]);
+        }
+        $now = Carbon::now();
+
+        Subscription::where('status', 'Paid')->get()
+            ->each(function ($item) use ($now) {
+                if ($now->greaterThanOrEqualTo(Carbon::parse($item->end_date))) {
+                    $item->update([
+                        'status' => 'Cancel',
+                    ]);
+                }
+            });
+        $response['status'] = true;
+        return $response;
     }
 }

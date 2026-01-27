@@ -78,7 +78,7 @@
                     </div>
 
                     <p id="info" class="text-muted small mb-3">
-                        Autorisez la caméra pour identifier vos photos.
+                        Retrouvez toutes vos photos juste avec un selfie.
                     </p>
 
                     <div class="camera-frame mb-3">
@@ -124,7 +124,7 @@
 
                     <h6 class="fw-semibold mb-2">Accès mobile</h6>
                     <p class="text-muted small mb-3">
-                        Scannez pour accéder à l’événement
+                        Scannez pour accéder à toutes les photos de l’événement
                     </p>
 
                     <div class="d-flex justify-content-center mb-3">

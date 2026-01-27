@@ -25,7 +25,7 @@
             </p>
 
             <div class="d-flex justify-content-center gap-3 flex-wrap">
-                <a href="{{ route('register') }}" class="btn btn-brand btn-lg px-5">
+                <a href="{{ route('login') }}" class="btn btn-brand btn-lg px-5">
                     Tester l’expérience
                 </a>
                 <a href="{{ route('about') }}" class="btn btn-outline-secondary btn-lg px-4">

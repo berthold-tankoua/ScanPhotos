@@ -152,5 +152,23 @@
         }
     @endif
 </script>
+<script>
+    // store Expiry Date Verif
+    function subscriptionCheckStatus() {
+        $.ajax({
+            type: 'POST',
+            url: "{{ url('/subscription-status-verif') }}",
+            dataType: 'json',
+            success: function(response) {
+                if (response['status']) {
+                    console.log('subscription status update succes')
+                } else {
+                    console.log('subscription status update error')
+                }
+            }
+        })
+    }
+    subscriptionCheckStatus()
+</script>
 
 </html>
