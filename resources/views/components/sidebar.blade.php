@@ -13,7 +13,8 @@
                         class="list-group-item list-group-item-action align-items-center d-flex">
                         <i class="bi bi-images fs-4 me-2"></i> Publier des photos
                     </a>
-                    <a href="#" class="list-group-item list-group-item-action align-items-center d-flex">
+                    <a href="{{ route('profile.edit') }}"
+                        class="list-group-item list-group-item-action align-items-center d-flex">
                         <i class="bi bi-person-circle fs-4 me-2"></i> Paramètres du compte
                     </a>
                     <a href="{{ url('/contact') }}"

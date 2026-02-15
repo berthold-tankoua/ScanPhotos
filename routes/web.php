@@ -22,11 +22,11 @@ Route::prefix('user')->group(function () {
     Route::get('/event/photos/download', [HomeController::class, 'EventResultDownload'])->name('photos.downloadAll');
 });
 
-Route::middleware('auth')->group(function () {
+Route::prefix('user')->middleware('auth')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 
     Route::prefix('event')->group(function () {
-        Route::get('/create', [AdminController::class, 'viewCreateEvent'])->name('create.event');
+        Route::get('/add', [AdminController::class, 'viewEvent'])->name('create.event');
         Route::post('/store', [AdminController::class, 'storeEvent'])->name('store.event');
 
         Route::get('/add/pictures', [AdminController::class, 'viewAddPictures'])->name('add.pictures');

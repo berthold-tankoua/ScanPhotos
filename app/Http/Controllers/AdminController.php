@@ -24,7 +24,7 @@ class AdminController extends Controller
     //
     public function viewAddPictures()
     {
-        $events = Event::where('user_id', Auth::id())->latest()->get();
+        $events = Event::where('user_id', Auth::id())->where('status', 'active')->latest()->get();
         return view('admins.pictures.add_pictures', compact('events'));
     }
     public function uploadImages(Request $request)
@@ -87,7 +87,7 @@ class AdminController extends Controller
         }
         return redirect()->route('dashboard')->with('success', ' photos uploaded successfully.');
     }
-    public function viewCreateEvent()
+    public function viewEvent()
     {
         return view('admins.events.add_event');
     }
@@ -135,14 +135,14 @@ class AdminController extends Controller
 
             Event::whereIn('user_id', $userIds)
                 ->update([
-                    'payment_status' => 'Paid',
+                    'payment_status' => 'paid',
                     'status' => 'active',
                     'price_paid' => 5,
                 ]);
         }
         $now = Carbon::now();
 
-        Subscription::where('status', 'Paid')->get()
+        Subscription::where('status', 'paid')->get()
             ->each(function ($item) use ($now) {
                 if ($now->greaterThanOrEqualTo(Carbon::parse($item->end_date))) {
                     $item->update([

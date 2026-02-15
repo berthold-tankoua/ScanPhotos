@@ -28,7 +28,7 @@ class StripeController extends Controller
     {
         Session::forget('eventId');
         Session::put('eventId', $eventId);
-        return view('payment.checkout.normal');
+        return view('payment.checkout.all');
     }
 
     // Stripe method 1: CheckoutPage
@@ -97,13 +97,18 @@ class StripeController extends Controller
             $subscription = \Stripe\Subscription::retrieve($session->subscription);
 
             if ($subscription->status === 'active') {
-                $data->status = 'Paid';
+                $data->status = 'paid';
                 $data->end_date = Carbon::now()->addMonth();
                 $data->updated_at = Carbon::now();
                 $data->save();
 
+                $event->payment_status = 'paid';
+                $event->status = 'active';
+                $event->price_paid = $data->price;
+                $event->save();
+
                 $user->subscription_id = $data->id;
-                $user->payment_type = 'Abonnement';
+                $user->payment_type = 'Abonnement mensuel';
                 $user->save();
                 return view('payment.status.success');
             } else {
@@ -118,7 +123,7 @@ class StripeController extends Controller
 
         // ---------- MODE PAIEMENT UNIQUE ----------
         if ($session->payment_status === 'paid') {
-            $data->status = 'Paid';
+            $data->status = 'paid';
             $data->updated_at = Carbon::now();
             $data->save();
 
