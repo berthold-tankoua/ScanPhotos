@@ -36,11 +36,15 @@ class HomeController extends Controller
     public function viewEvent($code)
     {
         $event = Event::where('code', $code)->firstOrFail();
-        if ($event->status !== 'active') {
-            return view('frontend.event.view', compact('event'));
-        } else {
-            return view('frontend.event.view', compact('event'));
-        }
+        $url = config('app.url') . '/take/picture/' . $code;
+
+        return view('frontend.event.view', compact('event', 'url'));
+    }
+
+    public function takePicture($code)
+    {
+        $event = Event::where('code', $code)->firstOrFail();
+        return view('frontend.event.take_pic', compact('event'));
     }
     public function viewEventImages($code)
     {
@@ -52,10 +56,7 @@ class HomeController extends Controller
         // Session::forget('photoIds');
         // Session::put('photoIds', $photoIds);
 
-        if ($event->status != 'active') {
-        } else {
-            return view('frontend.event.images', compact('event', 'photos', 'url'));
-        }
+        return view('frontend.event.images', compact('event', 'photos', 'url'));
     }
     public function viewResults()
     {

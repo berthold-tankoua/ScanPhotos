@@ -25,6 +25,9 @@
     <!-- Font -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap"
         rel="stylesheet">
+    <!-- ✅ Scripts différés pour ne pas bloquer le rendu -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 
     <style>
         body {

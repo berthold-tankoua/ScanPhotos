@@ -161,7 +161,7 @@ class StripeController extends Controller
         $productId = env('STRIPE_PRODUCT_ID');
         // 2️⃣ Créer un prix récurrent
         $price = \Stripe\Price::create([
-            'unit_amount' => 5 * 100,
+            'unit_amount' => $request->price * 100,
             'currency'    => 'USD',
             'recurring'   => [
                 'interval' => 'month',

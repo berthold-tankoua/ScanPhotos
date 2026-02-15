@@ -128,13 +128,13 @@
                         <div class="col-sm-6">
                             <div class="d-flex align-items-center justify-content-end pe-2">
                                 <div class="text-end me-3">
-                                    <p class="mb-0 fw-bold small">Scanner pour trouver vos photos</p>
-                                    <p class="mb-0 text-muted" style="font-size: 0.7rem;">Retrouvez toutes les photos ou
-                                        vous apparaisez</p>
+                                    <p class="mb-0 fw-bold small">Retrouvez toutes les photos ou vous apparaisez</p>
+                                    <p class="mb-0 text-muted" style="font-size: 0.75rem;">Retrouvez vos photos en scannant
+                                        ou en cliquant sur le QR code</p>
                                 </div>
-                                <div class="bg-white p-1 rounded-2 shadow-sm border">
+                                <a href="{{ $url }}" class="bg-white p-1 rounded-2 shadow-sm border">
                                     {!! QrCode::size(60)->margin(1)->generate($url) !!}
-                                </div>
+                                </a>
                             </div>
                         </div>
 

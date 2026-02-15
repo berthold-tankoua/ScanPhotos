@@ -13,7 +13,7 @@ Route::get('/contact', [HomeController::class, 'contact']);
 Route::post('/send/message', [HomeController::class, 'sendMessage'])->name('send.msg');
 
 
-
+Route::get('/take/picture/{code}', [HomeController::class, 'takePicture'])->name('take.picture');
 Route::get('/event/{code}', [HomeController::class, 'viewEvent'])->name('view.event');
 Route::get('/event/{code}/images', [HomeController::class, 'viewEventImages'])->name('view.event.images');
 
@@ -38,10 +38,6 @@ Route::prefix('user')->middleware('auth')->group(function () {
         Route::patch('/update', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/destroy', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
-    //  subscription-status-verif AJAX
-    Route::post('/subscription-status-verif', [AdminController::class, 'SubcriptionMonthlyCheck']);
-
-
 
     Route::get('/choose/plan', [HomeController::class, 'choosePlan'])->name('choose.plan');
 
@@ -57,6 +53,10 @@ Route::prefix('user')->middleware('auth')->group(function () {
 /// Paiement Status All Routes ////
 Route::get('/stripe/payment/status', [StripeController::class, 'StripePaymentStatus'])->name('stripe.status');
 Route::get('/stripe/payment/cancel', [StripeController::class, 'StripeCancel'])->name('stripe.cancel');
+
+//  subscription-status-verif AJAX
+Route::post('/subscription-status-verif', [AdminController::class, 'SubcriptionMonthlyCheck']);
+
 
 require __DIR__ . '/auth.php';
 
