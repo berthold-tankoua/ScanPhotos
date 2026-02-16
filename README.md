@@ -1,10 +1,10 @@
-📸 ScanPhoto
+📸 EventFace
 Retrouvez vos photos instantanément grâce à l’IA
 
-ScanPhoto est une plateforme intelligente de reconnaissance faciale qui transforme la manière dont les invités récupèrent leurs photos lors d’événements : mariages, anniversaires, fêtes privées ou événements corporatifs.
+EventFace est une plateforme intelligente de reconnaissance faciale qui transforme la manière dont les invités récupèrent leurs photos lors d’événements : mariages, anniversaires, fêtes privées ou événements corporatifs.
 
 Plus besoin de fouiller parmi des centaines de clichés :
-ScanPhoto identifie automatiquement chaque personne et lui affiche ses photos en quelques secondes.
+EventFace identifie automatiquement chaque personne et lui affiche ses photos en quelques secondes.
 
 🚀 Comment ça fonctionne
 
@@ -15,7 +15,7 @@ Les photographes importent les photos de l’événement sur un cloud sécurisé
 Les invités prennent un selfie pour s’identifier.
 
 3️⃣ Reconnaissance intelligente
-Grâce à l’IA et à la reconnaissance faciale, ScanPhoto affiche instantanément toutes les photos correspondantes.
+Grâce à l’IA et à la reconnaissance faciale, EventFace affiche instantanément toutes les photos correspondantes.
 
 ✨ Simple, rapide et sans attente.
 
@@ -41,7 +41,7 @@ IA : Reconnaissance d’image & faciale
 
 Sécurité : Stockage sécurisé · Accès contrôlé · Respect des données
 
-🌟 Pourquoi ScanPhoto ?
+🌟 Pourquoi EventFace ?
 
 ⏱️ Gain de temps pour les invités
 

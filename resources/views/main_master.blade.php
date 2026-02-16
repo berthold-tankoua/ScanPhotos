@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
     <meta name="description"
-        content="ScanPhoto utilise l'IA pour retrouver instantanément vos photos d'événements en scannant votre visage. Idéal pour mariages, galas et anniversaires.">
+        content="EventFace utilise l'IA pour retrouver instantanément vos photos d'événements en scannant votre visage. Idéal pour mariages, galas et anniversaires.">
     <meta name="keywords"
-        content="ScanPhoto, reconnaissance faciale, IA, photos d'événements, mariage, gala, anniversaire, récupération de photos, technologie photo">
+        content="EventFace, reconnaissance faciale, IA, photos d'événements, mariage, gala, anniversaire, récupération de photos, technologie photo">
     <meta name="robots" content="index, follow" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicons -->

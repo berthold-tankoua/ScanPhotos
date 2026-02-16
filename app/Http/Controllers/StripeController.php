@@ -45,7 +45,7 @@ class StripeController extends Controller
                 'price_data' => [
                     'currency' => 'USD',
                     'product_data' => [
-                        'name' => 'Paiement abonnement ScanPhotos',
+                        'name' => 'Paiement abonnement EventFaces',
                     ],
                     'unit_amount' => $amount,
                 ],

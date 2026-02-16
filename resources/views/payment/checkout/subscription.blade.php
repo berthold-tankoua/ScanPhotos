@@ -1,7 +1,7 @@
 @extends('main_master')
 
 @section('title')
-    ScanPhoto | Checkout
+    EventFace | Checkout
 @endsection
 
 @section('content')

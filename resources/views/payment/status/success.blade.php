@@ -1,7 +1,7 @@
 @extends('main_master')
 
 @section('title')
-    ScanPhoto | Paiement confirmé
+    EventFace | Paiement confirmé
 @endsection
 
 @section('content')
@@ -27,7 +27,7 @@
 
                         <p class="text-muted mb-4">
                             Votre paiement a été traité avec succès.
-                            Merci pour votre confiance et excellente expérience sur ScanPhoto.
+                            Merci pour votre confiance et excellente expérience sur EventFace.
                         </p>
 
                         <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">

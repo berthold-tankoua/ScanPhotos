@@ -1,7 +1,7 @@
 @extends('main_master')
 
 @section('title')
-    ScanPhoto | Vos souvenirs en un instant
+    EventFace | Vos souvenirs en un instant
 @endsection
 
 @section('content')
@@ -20,7 +20,7 @@
 
             <p class="lead text-muted mx-auto mb-5" style="max-width:920px;">
                 Vous organisez un événement (mariage, anniversaire, gala) ou êtes photographe ?
-                ScanPhoto permet à vos invités et clients d’accéder
+                EventFace permet à vos invités et clients d’accéder
                 automatiquement à leurs photos grâce à un simple selfie.
             </p>
 
@@ -88,7 +88,7 @@
     <section id="how" class="py-5 bg-light">
         <div class="container">
             <div class="text-center mb-5">
-                <h2 class="fw-bold">Comment fonctionne ScanPhoto</h2>
+                <h2 class="fw-bold">Comment fonctionne EventFace</h2>
                 <p class="text-muted">Une technologie simple, pensée pour l’humain.</p>
             </div>
 
@@ -142,7 +142,7 @@
             <div class="cta text-center">
                 <h2 class="fw-bold mb-3">Besoin de plus d’informations ?</h2>
                 <p class="opacity-75 mb-4">
-                    Contactez-nous pour découvrir comment ScanPhoto peut s’adapter à votre événement.
+                    Contactez-nous pour découvrir comment EventFace peut s’adapter à votre événement.
                 </p>
 
                 <a href="/scan" class="btn btn-light btn-lg fw-bold rounded-pill">

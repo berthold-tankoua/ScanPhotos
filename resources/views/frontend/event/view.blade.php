@@ -1,7 +1,7 @@
 @extends('main_master')
 
 @section('title')
-    ScanPhoto | {{ $event->title }}
+    EventFace | {{ $event->title }}
 @endsection
 
 @section('content')

@@ -1,7 +1,7 @@
 @extends('main_master')
 
 @section('title')
-    ScanPhoto | Choisir un plan
+    EventFace | Choisir un plan
 @endsection
 
 @section('content')

@@ -1,7 +1,7 @@
 @extends('main_master')
 
 @section('title')
-    Upload Photos – ScanPhoto
+    Upload Photos – EventFace
 @endsection
 
 @section('content')
@@ -47,7 +47,7 @@
                         <h4 class="fw-bold mb-3">Uploader vos photos</h4>
 
                         <p class="text-muted mb-4">
-                            Sélectionnez toutes les photos de votre événement pour les envoyer sur le cloud ScanPhoto.
+                            Sélectionnez toutes les photos de votre événement pour les envoyer sur le cloud EventFace.
                         </p>
 
                         <div class="mb-3">

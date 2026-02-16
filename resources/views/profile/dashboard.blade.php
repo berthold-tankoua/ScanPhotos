@@ -1,7 +1,7 @@
 @extends('main_master')
 
 @section('title')
-    Upload Photos – ScanPhoto
+    Upload Photos – EventFace
 @endsection
 
 @section('content')

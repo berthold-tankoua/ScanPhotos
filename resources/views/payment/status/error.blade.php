@@ -1,7 +1,7 @@
 @extends('main_master')
 
 @section('title')
-    ScanPhoto | Paiement échoué
+    EventFace | Paiement échoué
 @endsection
 
 @section('content')

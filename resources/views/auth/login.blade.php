@@ -1,7 +1,7 @@
 @extends('main_master')
 
 @section('title')
-    ScanPhoto | Connexion
+    EventFace | Connexion
 @endsection
 
 @section('content')

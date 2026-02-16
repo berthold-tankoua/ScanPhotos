@@ -1,7 +1,7 @@
 @extends('main_master')
 
 @section('title')
-    ScanPhoto | À propos de notre technologie
+    EventFace | À propos de notre technologie
 @endsection
 
 @section('content')
@@ -48,7 +48,7 @@
         <div class="container">
             <h1 class="display-4 fw-bold mb-3 ">Redéfinir le partage de souvenirs</h1>
             <p class="lead opacity-75 mx-auto" style="max-width: 900px;">
-                ScanPhoto est né d'un constat simple : nous vivons des moments extraordinaires, mais nous perdons trop
+                EventFace est né d'un constat simple : nous vivons des moments extraordinaires, mais nous perdons trop
                 souvent les photos qui les immortalisent.
             </p>
         </div>
@@ -69,7 +69,7 @@
                         Pour le photographe ou l’organisateur, la distribution se transforme en un cauchemar logistique.
                     </p>
                     <p class="text-muted fs-5">
-                        <strong>ScanPhoto</strong> permet aux invités grâce à un simple selfie, de retrouver instantanément
+                        <strong>EventFace</strong> permet aux invités grâce à un simple selfie, de retrouver instantanément
                         toutes les photos sur lesquelles ils apparaissent ou de télécharger l’intégralité de l’album de
                         l’événement.
                     </p>

@@ -1,7 +1,7 @@
 @extends('main_master')
 
 @section('title')
-    ScanPhoto | Contactez-nous
+    EventFace | Contactez-nous
 @endsection
 
 @section('content')

@@ -1,7 +1,7 @@
 @extends('main_master')
 
 @section('title')
-    ScanPhoto | Créer un compte
+    EventFace | Créer un compte
 @endsection
 
 @section('content')
