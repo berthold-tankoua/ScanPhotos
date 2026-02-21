@@ -19,7 +19,7 @@ Route::get('/event/{code}/images', [HomeController::class, 'viewEventImages'])->
 
 Route::prefix('user')->group(function () {
     Route::get('/event/results', [HomeController::class, 'viewResults'])->name('view.results');
-    Route::get('/event/photos/download', [HomeController::class, 'EventResultDownload'])->name('photos.downloadAll');
+    Route::get('/event/photos/download', [HomeController::class, 'EventAllPicsDownload'])->name('photos.downloadAll');
 });
 
 Route::prefix('user')->middleware('auth')->group(function () {

@@ -51,7 +51,7 @@ class HomeController extends Controller
         $event = Event::where('code', $code)->firstOrFail();
         $photos = PhotoList::where('event_id', $event->id)->get();
         $photoIds = PhotoList::where('event_id', $event->id)->pluck('id')->toArray();
-        $url = config('app.url') . '/event/' . $code;
+        $url = config('app.url') . '/take/picture/' . $code;
 
         // Session::forget('photoIds');
         // Session::put('photoIds', $photoIds);
